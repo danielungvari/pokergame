@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poker game</title>
+    <link rel="stylesheet" href="/assets/indstyle.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script
+      src="script.js" type="module"></script>
+    <style>
+      #gameScreen, #gameCode, #gameInfo, #playerWonScreen, #rulesScreen
+      {
+        display: none;
+      }
+    </style>
+ <body>
+    <div id="newGamePage">
+      <div style="color: white; text-align: center; font-size: 70px; font-weight: bold">Multiplayer Poker Game</div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        id="newGameButton"
+      >
+      Create New Game
+      </button>
+      <div style="color: white; text-align: center; font-size:xx-large; font-weight: bold">OR</div>
+      <div>
+        <input type="text" placeholder="Enter Game Code" id="gameCodeInput"/>
+      </div>
+        <button type="submit"
+        class="btn btn-success"
+        id="joinGameButton"
+        >
+        Join Game
+      </button>
+      <button type="submit"
+        class="btn btn-success"
+        id="rulesButton"
+        >
+        Rules
+      </button>
+      </div>
+
+    <div id="gameCode" style="color: white; text-align: center; font-size:xx-large; font-weight: bold;">Your game code is: <span id="gameCodeDisplay"></span></div>
+    <div id="playerWonScreen" style="color: white; text-align: center; font-size:xx-large; font-weight: bold;"></div>
+  <div id="gameScreen">
+    <p style="text-align: center; color: white;font-size:x-large; font-weight: bold">Board</p>
+    <div id="board">
+      <div id="card1"></div>        
+      <div id="card2"></div>
+      <div id="card3"></div>
+      <div id="card4"></div>
+      <div id="card5"></div>
+    </div>
+    <hr/>
+    <div id="text">
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 1's card</p>
+      <div id="empty2"></div>
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 2's card</p>
+    </div>
+    <div id="playerCards">
+      <div id="playerCard1"></div>
+      <div id="playerCard2"></div>
+      <div id="empty">
+        <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Current pot:</p>
+        <div id="pot">
+        <p id="currentPot" style="text-align: center; color: white; font-size:x-large; font-weight: bold">75</p>
+      </div>
+      <div id="information">
+      <p id="gameInfo" style="text-align: center; color: white; font-size:large; font-weight: bold"></p>
+    </div>
+      </div>
+      <div id="playerCard3"></div>
+      <div id="playerCard4"></div>
+    </div>
+    <div id="raiseInput">
+      <input type="number" placeholder="Your bet" id="player1RaiseInput"/>
+      <input type="number" placeholder="Your bet" id="player2RaiseInput"/>
+    </div>
+    <div id="playerButtons">
+      <button type="submit"
+        class="btn btn-success"
+        id="player1Fold"
+        >
+        Fold
+      </button>
+      <button type="submit"
+        class="btn btn-success"
+        id="player1Call"
+        >
+        Call
+      </button>
+      <button type="submit"
+        class="btn btn-success"
+        id="player1Raise"
+        >
+        Raise
+      </button>
+      <div id="empty3"></div>
+      <button type="submit"
+        class="btn btn-success"
+        id="player2Fold"
+        >
+        Fold
+      </button>
+      <button type="submit"
+        class="btn btn-success"
+        id="player2Call"
+        >
+        Check
+      </button>
+      <button type="submit"
+        class="btn btn-success"
+        id="player2Raise"
+        >
+        Raise
+      </button>
+    </div>
+    <div id="chipText">
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 1's chips</p>
+      <div id="empty5"></div>
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 1's bet</p>
+      <div id="empty"></div>
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 2's chips</p>
+      <div id="empty5"></div>
+      <p style="text-align: center; color: white; font-size:x-large; font-weight: bold">Player 2's bet</p>
+    </div>
+    <div id="playerChips">
+      <p id="player1Chips" style="text-align: center; color: white; font-size:x-large; font-weight: bold">10000</p>
+      <div id="empty6"></div>
+      <p id="player1Bet" style="text-align: center; color: white; font-size:x-large; font-weight: bold">0</p>
+      <div id="empty7"></div>
+      <p id="player2Chips" style="text-align: center; color: white; font-size:x-large; font-weight: bold">10000</p>
+      <div id="empty6"></div>
+      <p id="player2Bet" style="text-align: center; color: white; font-size:x-large; font-weight: bold">0</p> 
+    </div>
+  </div>
+
+  <div id="rulesScreen">
+    <p id="rulesText" style="text-align: center; color: white; font-size:large; font-weight: bold">
+      The rules of the poker game are these:<br><br>
+      At the start of the game Player 1 is the small blind, and Player 2 is the big blind. 
+      Both of these players must put in a forced bet (hence 'blind') before the hand is dealt. 
+      The price of the small blind is always half of the price of the big blind.
+      Each player in a Texas Hold’em game is dealt two cards.
+      After every player has two cards, the first of four betting rounds begin. 
+      Texas Hold’em betting rounds are known as preflop, flop, turn, and river.
+      The preflop betting round begins with Player 1 This player has three options:
+      Call (matching the big blind amount).
+      Raise (can raise any)
+      Fold (pushing their cards into the middle and surrendering any chance to win the hand).
+      If both players called the bet then the games move on the flop phase.
+      With the preflop betting round closed, the first three of five community cards are turned up, known as the “flop”.
+      Now players can bet again or they can hit check, meaning they are not raising anything.
+      After betting is closed the next phase is the turn.
+      Also known as “fourth street”, the turn is the fourth community card dealt to the board.
+      Same betting system as the previous phase. Then the river phase begins.
+      The fifth and final community card is placed on the board.
+      This card is known as the river, or “fifth street”. After the fifth card is placed the final betting round begins, both players can either raise or check, or even fold.
+      If none of them folded all of the cards are turned up and the system will evaluate which hand is higher and the better hand wins the pot.
+      After that a new round begins and the blinds are swapped.
+      If one the players have 0 chips left loses the game. 
+    </p>
+    <button type="submit"
+        class="btn btn-success"
+        id="mainMenuButton"
+        >
+        Main Menu
+      </button>
+  </div>
+  
+  </body>
+</html>

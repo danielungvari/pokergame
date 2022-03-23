@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: url(poker.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#board,
+#playerCards {
+  display: flex;
+  clear: both;
+  width: 100%;
+  min-height: 240px;
+  color: white;
+  justify-content: center;
+}
+
+#newGamePage,
+#gameScreen,
+#gameCode,
+#playerWonScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#rulesScreen {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+#newGameButton,
+#joinGameButton {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 14px 10px;
+  width: 220px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25px;
+  color: white;
+}
+
+#rulesButton {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 7px 8px;
+  width: 80px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25px;
+  color: white;
+}
+
+#mainMenuButton {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 7px 8px;
+  width: 100px;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25px;
+  color: white;
+}
+
+#newGameButton:hover,
+#joinGameButton:hover,
+#rulesButton:hover,
+#mainMenuButton:hover {
+  background-color: darkgreen;
+}
+
+#gameCodeInput {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 14px 10px;
+  width: 300px;
+  outline: none;
+  border-radius: 10px;
+  transition: 0.25px;
+  color: white;
+}
+
+.card {
+  box-sizing: flex;
+  width: 150px;
+  height: 214px;
+  margin: 10px;
+  float: left;
+  background-color: white;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: none;
+  background-position: middle center;
+  background-size: cover;
+  border: 1px #ffffff solid;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 3px 0px #000000;
+  box-shadow: 2px 2px 3px 0px #000000;
+  justify-content: center;
+}
+
+#empty {
+  display: box;
+  width: 200px;
+  text-align: center;
+}
+
+#empty2 {
+  display: box;
+  width: 375px;
+}
+
+#empty3 {
+  display: box;
+  width: 545px;
+}
+
+#empty4 {
+  display: box;
+  width: 460px;
+}
+
+#empty5 {
+  display: box;
+  width: 50px;
+}
+
+#empty6 {
+  display: box;
+  width: 150px;
+}
+#empty7 {
+  display: box;
+  width: 320px;
+}
+
+#text,
+#pot,
+#information,
+#chipText,
+#playerChips {
+  display: flex;
+  clear: both;
+  width: 100%;
+  color: white;
+  justify-content: center;
+}
+
+#playerButtons {
+  display: flex;
+  clear: both;
+  width: 100%;
+  color: white;
+  justify-content: center;
+}
+
+#player1Fold,
+#player1Call,
+#player1Raise,
+#player2Fold,
+#player2Call,
+#player2Raise {
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  margin: 4px auto;
+  border: 3px solid #0367fd;
+  padding: 8px 10px;
+  width: 100px;
+  outline: none;
+  border-radius: 10px;
+  transition: 0.25px;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+
+#player1Fold:hover,
+#player1Call:hover,
+#player1Raise:hover,
+#player2Fold:hover,
+#player2Call:hover,
+#player2Raise:hover,
+#player1RaiseInput:hover,
+#player2RaiseInput:hover {
+  background-color: darkgreen;
+}
+
+#player1Chips,
+#player2Chips,
+#player1Bet,
+#player2Bet {
+  border: 3px solid #0367fd;
+  padding: 8px 10px;
+  border-radius: 15px;
+  background-color: #000000;
+  margin-top: 0px;
+}
+
+#currentPot {
+  border: 3px solid #0367fd;
+  padding: 8px 10px;
+  border-radius: 15px;
+  display: box;
+  width: 120px;
+  color: white;
+  text-align: center;
+  background-color: #000000;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#playerChips {
+  display: flex;
+  width: 100%;
+  color: white;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+#player1RaiseInput {
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 7px 7px;
+  width: 85px;
+  outline: none;
+  border-radius: 10px;
+  transition: 0.25px;
+  color: white;
+  background-color: #000000;
+  margin-left: 300px;
+}
+
+#player2RaiseInput {
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  border: 3px solid #0367fd;
+  padding: 7px 7px;
+  width: 85px;
+  outline: none;
+  border-radius: 10px;
+  transition: 0.25px;
+  color: white;
+  background-color: #000000;
+  margin-left: 845px;
+}
+
+#raiseInput {
+  display: flex;
+  width: 100%;
+  color: white;
+  justify-content: left;
+}
+
+#gameInfo {
+  border: 3px solid #0367fd;
+  padding: 8px 10px;
+  border-radius: 15px;
+  display: box;
+  width: 150px;
+  color: white;
+  text-align: center;
+  background-color: #000000;
+}
+
+#rulesText {
+  border: 3px solid #0367fd;
+  padding: 8px 10px;
+  border-radius: 15px;
+  background-color: #000000;
+  margin-top: 0px;
+  text-align: center;
+}
