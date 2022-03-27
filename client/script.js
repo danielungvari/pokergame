@@ -191,9 +191,16 @@ function playerWon(winner)
     player1Chips.innerHTML = Number(player1Chips.innerHTML) + Number(currentPot.innerHTML);
     gameInformation.innerHTML = "Player 1 Won <br> " + currentPot.innerHTML + " chips with<br>" + winner[1];  
   }
-  else{
+  else if(winner[0] == 'player2Hand')
+  {
     player2Chips.innerHTML = Number(player2Chips.innerHTML) + Number(currentPot.innerHTML);
     gameInformation.innerHTML = "Player 2 Won <br> " + currentPot.innerHTML + " chips with<br>" + winner[1]; 
+  }
+  else
+  {
+    player1Chips.innerHTML = Number(player1Chips.innerHTML) + (Number(currentPot.innerHTML) / 2);
+    player2Chips.innerHTML = Number(player2Chips.innerHTML) + (Number(currentPot.innerHTML) / 2);
+    gameInformation.innerHTML = "It was a draw. <br> Both players won <br> " + (Number(currentPot.innerHTML) / 2) + " chips with <br> " + winner[1];
   }
   if(Number(player1Chips.innerHTML) === 0)
   {
