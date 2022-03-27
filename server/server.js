@@ -269,12 +269,16 @@ io.on('connection', (socket) =>
             win = ['player1Hand',player1Hand.descr];
             return win;
         }
-        else
+        else if(player2Hand.rank > player1Hand.rank)
         {
             win = ['player2Hand',player2Hand.descr];
             return win;
         }
-
+        else
+        {
+            win = ['draw',player1Hand.descr];
+            return win;
+        }
     }
 
     //-----------------------------------------------------------------------------------------//
