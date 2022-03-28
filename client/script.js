@@ -293,6 +293,12 @@ function playFlipSound()
   cardflip.play();
 }
 
+function playCheckSound()
+{
+  let check = new Audio('%__dirname/../assets/check_sound.mp3');
+  check.play();
+}
+
 //---------------------------------------------------------------------------//
 
 //-----------Player Buttons Enabling/Disabling---------//
@@ -492,6 +498,7 @@ function player1Called(buttonText, pot, chips)
         enablePlayer2Button();
         disablePlayer1Button();
     }
+    playCheckSound();
   }
   else if(buttonText == 'Call')
   {
@@ -593,8 +600,8 @@ function player2Called(buttonText, pot, chips)
         gameInformation.innerHTML = "Player 2 Checked";
         disablePlayer2Button();
         enablePlayer1Button();
-
     }
+    playCheckSound();
   }
   else if(buttonText == 'Call')
   {
