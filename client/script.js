@@ -191,16 +191,9 @@ function playerWon(winner)
     player1Chips.innerHTML = Number(player1Chips.innerHTML) + Number(currentPot.innerHTML);
     gameInformation.innerHTML = "Player 1 Won <br> " + currentPot.innerHTML + " chips with<br>" + winner[1];  
   }
-  else if(winner[0] == 'player2Hand')
-  {
+  else{
     player2Chips.innerHTML = Number(player2Chips.innerHTML) + Number(currentPot.innerHTML);
     gameInformation.innerHTML = "Player 2 Won <br> " + currentPot.innerHTML + " chips with<br>" + winner[1]; 
-  }
-  else
-  {
-    player1Chips.innerHTML = Number(player1Chips.innerHTML) + (Number(currentPot.innerHTML) / 2);
-    player2Chips.innerHTML = Number(player2Chips.innerHTML) + (Number(currentPot.innerHTML) / 2);
-    gameInformation.innerHTML = "It was a draw. <br> Both players won <br> " + (Number(currentPot.innerHTML) / 2) + " chips with <br> " + winner[1];
   }
   if(Number(player1Chips.innerHTML) === 0)
   {
@@ -300,12 +293,6 @@ function playFlipSound()
   cardflip.play();
 }
 
-function playCheckSound()
-{
-  let check = new Audio('%__dirname/../assets/check_sound.mp3');
-  check.play();
-}
-
 //---------------------------------------------------------------------------//
 
 //-----------Player Buttons Enabling/Disabling---------//
@@ -376,6 +363,7 @@ function player1Fold(){
 }
 
 function player1Call(){
+  player1RaiseInput.style.display = "none";
   if(player1CallBtn.innerHTML == 'Check')
   {
     socket.emit('player1Call', gameCodeDisplay.innerText,player1CallBtn.innerHTML, Number(currentPot.innerHTML), Number(player1Chips.innerHTML), Number(player1Bet.innerHTML), Number(player2Bet.innerHTML));
@@ -398,7 +386,17 @@ function player1Raise(){
       alert("Can't raise higher than your current chips");
       player1RaiseInput.value = "";
     }
-  if(Number(player1RaiseInput.value) <= Number(player1Chips.innerHTML))
+    if(Number(player1RaiseInput.value) <= 0)
+    {
+      alert("You have to raise higher than 0");
+      player1RaiseInput.value = "";
+    }
+    if(Number(player1RaiseInput.value) <= Number(player2Bet.innerHTML))
+    {
+      alert("You have to raise higher than Player 2's bet");
+      player1RaiseInput.value = "";
+    }
+  if(Number(player1RaiseInput.value) <= Number(player1Chips.innerHTML) && Number(player1RaiseInput.value) > 0 && Number(player1RaiseInput.value) > Number(player2Bet.innerHTML))
     {                    
     socket.emit('player1Raise', gameCodeDisplay.innerText, Number(player1RaiseInput.value));
     player1RaiseInput.style.display = "none";
@@ -418,6 +416,7 @@ function player2Fold(){
 }
 
 function player2Call(){
+  player2RaiseInput.style.display = "none";
   if(player2CallBtn.innerHTML == 'Check')
   {
       socket.emit('player2Call', gameCodeInput.value, player2CallBtn.innerHTML, Number(currentPot.innerHTML), Number(player2Chips.innerHTML), Number(player1Bet.innerHTML), Number(player2Bet.innerHTML));
@@ -440,7 +439,17 @@ function player2Raise(){
       alert("Can't raise higher than your current chips");
       player2RaiseInput.value = "";
     }
-  if(Number(player2RaiseInput.value) <= Number(player2Chips.innerHTML))
+    if(Number(player2RaiseInput.value) <= 0)
+    {
+      alert("You have to raise higher than 0");
+      player2RaiseInput.value = "";
+    }
+    if(Number(player2RaiseInput.value) <= Number(player1Bet.innerHTML))
+    {
+      alert("You have to raise higher than Player 1's bet");
+      player2RaiseInput.value = "";
+    }
+  if(Number(player2RaiseInput.value) <= Number(player2Chips.innerHTML) && Number(player2RaiseInput.value) > 0 && Number(player2RaiseInput.value) > Number(player1Bet.innerHTML) )
     {                    
     socket.emit('player2Raise', gameCodeInput.value, Number(player2RaiseInput.value));
     player2RaiseInput.style.display = "none";
@@ -483,7 +492,6 @@ function player1Called(buttonText, pot, chips)
         enablePlayer2Button();
         disablePlayer1Button();
     }
-    playCheckSound();
   }
   else if(buttonText == 'Call')
   {
@@ -585,8 +593,8 @@ function player2Called(buttonText, pot, chips)
         gameInformation.innerHTML = "Player 2 Checked";
         disablePlayer2Button();
         enablePlayer1Button();
+
     }
-    playCheckSound();
   }
   else if(buttonText == 'Call')
   {
