@@ -269,7 +269,7 @@ function playAudio(any)
   let smallchips = new Audio('$__dirname/../assets/chips_small.mp3');
   let cardfold = new Audio('%__dirname/../assets/card_fold.mp3');
   let winbig = new Audio('%__dirname/../assets/chips_shuffle_big.mp3');
-  if(any > 500)
+  if(any >= 500)
   {
     bigchips.play();
   }
